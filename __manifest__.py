@@ -7,6 +7,10 @@
     "category": "Accounting",
     "website": "https://collinslagat.com",
     "depends": ["account", "sale", "base_geolocalize"],
+    "data": [
+        "data/avior_tax_data.xml",
+        "views/avior_tax_view.xml",
+    ],
     "installable": True,
     "application": True,
 }

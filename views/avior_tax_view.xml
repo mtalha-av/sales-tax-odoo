@@ -1,15 +1,45 @@
 <odoo>
-  <!--
-    Avior API Configuration in Odoo
-    -->
-  <record id="view_avior_tax_form" model="ir.ui.view"></record>
+  <!--Avior API Configuration in Odoo-->
+  <record id="view_avior_tax_configuration_form" model="ir.ui.view">
+    <field name="name">avior_tax.configuration.form</field>
+    <field name="model">avior_tax.configuration</field>
+    <field name="arch" type="xml">
+      <form string="Avior Tax API">
+        <header>
+          <button class="oe_highlight" name="action_done" states="draft" string="Confirm" type="object"></button>
+          <button name="action_draft" states="done" string="Set To Draft" type="object"></button>
+          <field name="state" widget="statusbar"></field>
+        </header>
+        <sheet>
+          <group>
+            <group>
+              <field colspan="4" name="description" nolabel="1" placeholder="Description..."></field>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <record id="view_avior_configuration_tree" model="ir.ui.view">
+    <field name="name">avior_tax.configuration.tree</field>
+    <field name="model">avior_tax.configuration</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field groups="base.group_multi_company" name="company_id"></field>
+        <field name="username"></field>
+        <field name="seller_id"></field>
+        <field name="service_url"></field>
+      </tree>
+    </field>
+  </record>
   <record id="action_avior_tax" model="ir.actions.act_window">
     <field name="name">Avior API</field>
     <field name="res_model">avior_tax.configuration</field>
     <field name="binding_view_types">tree</field>
     <field name="view_mode">tree,form</field>
-    <field name="help">Configuration of Avior in odoo</field>
+    <field name="help">Configuration of Avior in Odoo</field>
   </record>
-  <menuitem id="menu_avior" name="Avior Tax" parent="account.menu_finance_configuration" sequence="2"></menuitem>
-  <menuitem action="action_avior_tax" id="menu_avior_api" name="Avior Tax API" parent="menu_avior" sequence="30"></menuitem>
+  <menuitem id="menu_avior" name="Avior Tax" parent="account.menu_finance_configuration"></menuitem>
+  <menuitem action="action_avior_tax" id="menu_avior_api" name="Avior Tax API" parent="menu_avior"></menuitem>
 </odoo>
