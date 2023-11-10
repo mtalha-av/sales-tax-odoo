@@ -1,0 +1,15 @@
+<odoo>
+  <!--
+    Avior API Configuration in Odoo
+    -->
+  <record id="view_avior_tax_form" model="ir.ui.view"></record>
+  <record id="action_avior_tax" model="ir.actions.act_window">
+    <field name="name">Avior API</field>
+    <field name="res_model">avior_tax.configuration</field>
+    <field name="binding_view_types">tree</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help">Configuration of Avior in odoo</field>
+  </record>
+  <menuitem id="menu_avior" name="Avior Tax" parent="account.menu_finance_configuration" sequence="2"></menuitem>
+  <menuitem action="action_avior_tax" id="menu_avior_api" name="Avior Tax API" parent="menu_avior" sequence="30"></menuitem>
+</odoo>
