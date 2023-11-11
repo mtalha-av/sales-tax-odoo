@@ -5,15 +5,15 @@
     <field name="model">avior_tax.configuration</field>
     <field name="arch" type="xml">
       <form string="Avior Tax API">
-        <header>
-          <button class="oe_highlight" name="action_done" states="draft" string="Confirm" type="object"></button>
-          <button name="action_draft" states="done" string="Set To Draft" type="object"></button>
-          <field name="state" widget="statusbar"></field>
-        </header>
+        <!-- <header> -->
+        <!--   <button class="oe_highlight" name="action_done" states="draft" string="Confirm" type="object"></button> -->
+        <!--   <button name="action_draft" states="done" string="Set To Draft" type="object"></button> -->
+        <!--   <field name="state" widget="statusbar"></field> -->
+        <!-- </header> -->
         <sheet>
           <group>
             <group>
-              <field colspan="4" name="description" nolabel="1" placeholder="Description..."></field>
+              <field colspan="4" name="username" nolabel="1" placeholder="Username..."></field>
             </group>
           </group>
         </sheet>
@@ -26,7 +26,6 @@
     <field name="type">tree</field>
     <field name="arch" type="xml">
       <tree>
-        <field groups="base.group_multi_company" name="company_id"></field>
         <field name="username"></field>
         <field name="seller_id"></field>
         <field name="service_url"></field>
@@ -40,6 +39,6 @@
     <field name="view_mode">tree,form</field>
     <field name="help">Configuration of Avior in Odoo</field>
   </record>
-  <menuitem id="menu_avior" name="Avior Tax" parent="account.menu_finance_configuration"></menuitem>
-  <menuitem action="action_avior_tax" id="menu_avior_api" name="Avior Tax API" parent="menu_avior"></menuitem>
+  <menuitem id="menu_avior" name="Avior Tax" parent="account.menu_finance_configuration" sequence="2"></menuitem>
+  <menuitem action="action_avior_tax" id="menu_avior_api" name="Avior Tax API" parent="menu_avior" sequence="30"></menuitem>
 </odoo>
