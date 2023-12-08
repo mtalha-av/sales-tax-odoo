@@ -1,1 +1,1 @@
-from . import account_tax, account_move, avior_tax_configuration
+from . import account_tax, account_move, aviortax_configuration

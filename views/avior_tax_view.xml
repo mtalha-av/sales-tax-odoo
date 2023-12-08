@@ -1,8 +1,8 @@
 <odoo>
   <!--Avior API Configuration in Odoo-->
   <record id="view_avior_tax_configuration_form" model="ir.ui.view">
-    <field name="name">avior_tax.configuration.form</field>
-    <field name="model">avior_tax.configuration</field>
+    <field name="name">aviortax.configuration.form</field>
+    <field name="model">aviortax.configuration</field>
     <field name="arch" type="xml">
       <form string="Avior Tax API">
         <!-- <header> -->
@@ -21,8 +21,8 @@
     </field>
   </record>
   <record id="view_avior_configuration_tree" model="ir.ui.view">
-    <field name="name">avior_tax.configuration.tree</field>
-    <field name="model">avior_tax.configuration</field>
+    <field name="name">aviortax.configuration.tree</field>
+    <field name="model">aviortax.configuration</field>
     <field name="type">tree</field>
     <field name="arch" type="xml">
       <tree>
@@ -34,7 +34,7 @@
   </record>
   <record id="action_avior_tax" model="ir.actions.act_window">
     <field name="name">Avior API</field>
-    <field name="res_model">avior_tax.configuration</field>
+    <field name="res_model">aviortax.configuration</field>
     <field name="binding_view_types">tree</field>
     <field name="view_mode">tree,form</field>
     <field name="help">Configuration of Avior in Odoo</field>

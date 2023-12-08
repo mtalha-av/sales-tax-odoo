@@ -6,9 +6,9 @@ from odoo import fields, models
 _logger = logging.getLogger(__name__)
 
 
-class AviorTaxConfiguration(models.Model):
-    _name = "avior_tax.configuration"
-    _description = "Avior Configuration"
+class AviortaxConfiguration(models.Model):
+    _name = "aviortax.configuration"
+    _description = "Avior Tax Configuration"
 
     company_name = fields.Char(
         string="Company Name",
