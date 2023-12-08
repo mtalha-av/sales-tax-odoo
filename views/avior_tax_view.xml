@@ -3,6 +3,7 @@
   <record id="view_avior_tax_configuration_form" model="ir.ui.view">
     <field name="name">aviortax.configuration.form</field>
     <field name="model">aviortax.configuration</field>
+    <field name="type">form</field>
     <field name="arch" type="xml">
       <form string="Avior Tax API">
         <!-- <header> -->
