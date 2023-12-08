@@ -11,9 +11,6 @@ class AviortaxConfiguration(models.Model):
     _description = "Avior Tax Configuration"
 
     # Fields
-    company_name = fields.Char(
-        string="Company Name", help="The company name to connect with"
-    )
     company_id = fields.Many2one(
         "res.company",
         string="Company",
@@ -37,3 +34,9 @@ class AviortaxConfiguration(models.Model):
     customer_entity_code = fields.Char(
         string="Customer Entity Code", help="The customer entity code to connect with"
     )
+
+    # Methods
+
+    def ping(self):
+        """Ping the service to check if it's working"""
+        return True
