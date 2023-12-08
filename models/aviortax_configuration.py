@@ -37,6 +37,6 @@ class AviortaxConfiguration(models.Model):
 
     # Methods
 
-    def ping(self):
-        """Ping the service to check if it's working"""
+    def login(self):
+        """Login to Avior Tax"""
         return True

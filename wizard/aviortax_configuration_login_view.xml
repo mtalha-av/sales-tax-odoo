@@ -1,0 +1,28 @@
+<odoo>
+  <!-- Avior Tax Login Service -->
+  <record id="view_aviortax_configuration_login" model="ir.ui.view">
+    <field name="name">Login</field>
+    <field name="model">aviortax.configuration.login</field>
+    <field name="arch" type="xml">
+      <form string="Test Connection">
+        <group col="1">
+          <field invisible="1" name="name"></field>
+          <h4>Login successful</h4>
+        </group>
+        <footer>
+          <button class="btn-default" special="cancel" string="OK"></button>
+        </footer>
+      </form>
+    </field>
+  </record>
+  <record id="action_aviortax_configuration_login" model="ir.actions.act_window">
+    <field name="name">Login</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">aviortax.configuration.login</field>
+    <field name="binding_view_types">form</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_aviortax_configuration_login"></field>
+    <field name="context">{'record_id': active_id}</field>
+    <field name="target">new</field>
+  </record>
+</odoo>
