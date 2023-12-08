@@ -14,9 +14,33 @@
         <sheet>
           <group>
             <group>
-              <field colspan="4" name="username" nolabel="1" placeholder="Username..."></field>
+              <field name="company_id" options="{'no_create_edit': True}"></field>
             </group>
           </group>
+          <notebook>
+            <page name="connection_page" string="Connection">
+              <group>
+                <group>
+                  <field name="username"></field>
+                  <field name="password" password="True"></field>
+                  <field name="service_url"></field>
+                  <field name="token" password="True"></field>
+                  <button class="btn-primary d-flex align-items-center" icon="fa-lock" name="%(account_aviortax_ckl.action_aviortax_configuration_login)d" string="Login" type="action"></button>
+                  <a colspan="2" href="https://avior.tax/" target="_blank">Visit the Avior Tax website</a>
+                </group>
+              </group>
+            </page>
+            <page name="details_page" string="Details">
+              <group>
+                <group>
+                  <field name="seller_id"></field>
+                  <field name="seller_location_id"></field>
+                  <field name="seller_state"></field>
+                  <field name="customer_entity_code"></field>
+                </group>
+              </group>
+            </page>
+          </notebook>
         </sheet>
       </form>
     </field>
