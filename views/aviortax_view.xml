@@ -1,6 +1,6 @@
 <odoo>
   <!--Avior API Configuration in Odoo-->
-  <record id="view_avior_tax_configuration_form" model="ir.ui.view">
+  <record id="view_aviortax_configuration_form" model="ir.ui.view">
     <field name="name">aviortax.configuration.form</field>
     <field name="model">aviortax.configuration</field>
     <field name="type">form</field>
@@ -21,7 +21,7 @@
       </form>
     </field>
   </record>
-  <record id="view_avior_configuration_tree" model="ir.ui.view">
+  <record id="view_aviortax_configuration_tree" model="ir.ui.view">
     <field name="name">aviortax.configuration.tree</field>
     <field name="model">aviortax.configuration</field>
     <field name="type">tree</field>
@@ -33,13 +33,13 @@
       </tree>
     </field>
   </record>
-  <record id="action_avior_tax" model="ir.actions.act_window">
+  <record id="action_aviortax" model="ir.actions.act_window">
     <field name="name">Avior API</field>
     <field name="res_model">aviortax.configuration</field>
     <field name="binding_view_types">tree</field>
     <field name="view_mode">tree,form</field>
     <field name="help">Configuration of Avior in Odoo</field>
   </record>
-  <menuitem id="menu_avior" name="Avior Tax" parent="account.menu_finance_configuration" sequence="2"></menuitem>
-  <menuitem action="action_avior_tax" id="menu_avior_api" name="Avior Tax API" parent="menu_avior" sequence="30"></menuitem>
+  <menuitem id="menu_aviortax" name="Avior Tax" parent="account.menu_finance_configuration" sequence="2"></menuitem>
+  <menuitem action="action_aviortax" id="menu_aviortax_api" name="Avior Tax API" parent="menu_aviortax" sequence="30"></menuitem>
 </odoo>

@@ -9,8 +9,8 @@
     "depends": ["account", "sale", "base_geolocalize"],
     "data": [
         "security/ir.model.access.csv",
-        "data/avior_tax_data.xml",
-        "views/avior_tax_view.xml",
+        "data/aviortax_data.xml",
+        "views/aviortax_view.xml",
     ],
     "installable": True,
     "application": True,
