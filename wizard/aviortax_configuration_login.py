@@ -8,10 +8,16 @@ class AviortaxConfigurationLogin(models.TransientModel):
     name = fields.Char()
 
     @api.model
+    def default_get(self, fields):
+        res = super().default_get(fields)
+        self.login()
+        return res
+
+    @api.model
     def login(self):
         """Get Token from Aviortax."""
         active_id = self.env.context.get("active_id")
         if active_id:
-            avatax = self.env["aviortax.configuration"].browse(active_id)
-            avatax.login()
+            avior_configuration = self.env["aviortax.configuration"].browse(active_id)
+            avior_configuration.login()
         return True

@@ -1,7 +1,7 @@
 import logging
 
 from odoo import fields, models
-
+from ..api.aviortax_v1_client import AviortaxV1Client
 
 _logger = logging.getLogger(__name__)
 
@@ -39,4 +39,8 @@ class AviortaxConfiguration(models.Model):
 
     def login(self):
         """Login to Avior Tax"""
+        authToken = AviortaxV1Client.login(
+            service_url=self.service_url, username=self.username, password=self.password
+        )
+        self.write({"token": authToken})
         return True
