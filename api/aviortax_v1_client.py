@@ -17,7 +17,7 @@ def build_tax(product_dict: dict, count: int):
 def build_tax_from_product(product_dict: dict):
     count = 1
     taxes = []
-    while product_dict[f"fips jurisdiction code {count}"]:
+    while product_dict.get(f"fips jurisdiction code {count}"):
         taxes.append(build_tax(product_dict, count))
         count += 1
     return taxes
