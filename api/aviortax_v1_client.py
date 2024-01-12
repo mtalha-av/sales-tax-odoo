@@ -1,3 +1,4 @@
+from typing import List
 import requests
 
 from .dtos import Output
@@ -22,10 +23,13 @@ def build_tax_from_product(product_dict: dict):
     return taxes
 
 
-def build_product(product_dict: dict):
-    product = Output.Product(product_dict)
-    product.taxes = build_tax_from_product(product_dict)
-    return product
+def build_products(product_list: List[dict]):
+    products = []
+    for product_dict in product_list:
+        product = Output.Product(product_dict)
+        product.taxes = build_tax_from_product(product_dict)
+        products.append(product)
+    return products
 
 
 class AviortaxV1Client:
@@ -53,7 +57,7 @@ class AviortaxV1Client:
         if not response.ok:
             raise Exception("Get tax failed")
         data = response.json()
-        return build_product(data)
+        return build_products(data)
 
 
 __all__ = ["AviortaxV1Client"]

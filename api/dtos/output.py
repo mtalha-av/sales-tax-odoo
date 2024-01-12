@@ -23,7 +23,8 @@ class Output:
         taxability_code: str
         taxes: List["Output.Tax"]
 
-        def __init__(self, data, taxes=[]):
+        def __init__(self, data, taxes=None):
+            taxes = taxes or []
             self.date = data["date"]
             self.record_number = data["record number"]
             self.seller_id = data["seller id"]
