@@ -48,6 +48,22 @@ class AviortaxV1Client:
         data = response.json()
         return data["auth_token"]
 
+    def _fail_or_return_response_body(self, response: Dict) -> Dict:
+        if "error code" in response:
+            error_code = response["error code"]
+            error_comments = response["error comments"]
+            raise Exception(
+                f"AviorTax server returned an error (error code {error_code}): {error_comments}"
+            )
+
+        return response
+
+    def fail_or_return_response_body(self, response) -> List[Dict]:
+        if not response:
+            raise Exception("AviorTax server returned an empty response")
+
+        return [self._fail_or_return_response_body(item) for item in response]
+
     def get_tax(self, input_products=[]):
         response = requests.post(
             f"{self.service_url}/suttaxd/gettax/",
@@ -59,6 +75,7 @@ class AviortaxV1Client:
             _LOGGER.error(response.status_code)
             raise Exception("Get tax failed")
         data = response.json()
+        data = self.fail_or_return_response_body(data)
         return build_products(data)
 
 
