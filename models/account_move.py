@@ -79,7 +79,7 @@ class AccountMove(models.Model):
 
         taxable_lines = self._avior_tax_prepare_lines()
 
-        if not taxable_lines:
+        if len(taxable_lines) == 0:
             return
 
         tax_results = avior_tax_config.calculate_tax(
