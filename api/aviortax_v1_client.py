@@ -1,7 +1,10 @@
 from typing import List
+import logging
 import requests
 
 from .dtos import Output
+
+_LOGGER = logging.getLogger(__name__)
 
 
 def build_tax(product_dict: dict, count: int):
