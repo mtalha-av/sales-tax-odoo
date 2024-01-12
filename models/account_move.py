@@ -59,3 +59,42 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     avior_amt_line = fields.Float(string="Avior Line", copy=False)
+
+    def _get_avior_tax_amount(self):
+        """
+        Return the company currency line amount, after discounts,
+        to use for Tax calculation.
+
+        Can be used to compute unit price only, using qty=1.
+
+        Code extracted from account/models/account_move.py,
+        from the compute_base_line_taxes() nested function,
+        adjusted to compute line amount instead of unit price.
+        """
+        self.ensure_one()
+        move = self.move_id
+        sign = -1 if move.is_inbound() else 1
+        base_amount = self.price_unit * self.quantity
+        if self.currency_id:
+            price_unit_foreign_curr = sign * base_amount * (1 - (self.discount / 100.0))
+            price_unit_comp_curr = self.currency_id._convert(
+                price_unit_foreign_curr,
+                move.company_id.currency_id,
+                move.company_id,
+                move.date,
+            )
+        else:
+            price_unit_comp_curr = sign * base_amount * (1 - (self.discount / 100.0))
+        return -price_unit_comp_curr
+
+    def _avior_tax_prepare_line(self, sign=1):
+        """
+        Prepare a line to use for Avior Tax computation.
+        Returns a dict
+        """
+        res = {}
+        amount = sign * self._get_avior_tax_amount()
+        if self.quantity < 0:
+            amount = -amount
+        res = {"sku": self.product_id.default_code, "amount": amount, "id": self}
+        return res
