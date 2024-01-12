@@ -75,8 +75,8 @@ class AviortaxConfiguration(models.Model):
 
     def login(self):
         """Login to Avior Tax"""
-        authToken = AviortaxV1Client.login(
+        auth_token = AviortaxV1Client.login(
             service_url=self.service_url, username=self.username, password=self.password
         )
-        self.write({"token": authToken})
+        self.write({"token": auth_token})
         return True
