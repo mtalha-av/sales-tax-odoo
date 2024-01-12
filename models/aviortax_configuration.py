@@ -50,8 +50,8 @@ class AviortaxConfiguration(models.Model):
         )
         prepared_lines = [
             Input.Product(
-                date=doc_date,
                 record_number=line.get("id").id,
+                date=doc_date.strftime("%Y%m%d"),
                 seller_id=self.seller_id,
                 seller_location_id=self.seller_location_id,
                 seller_state=self.seller_state,
