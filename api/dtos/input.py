@@ -1,6 +1,6 @@
 class Input:
     class Product:
-        def init(
+        def __init__(
             self,
             date: str,
             record_number: str,
