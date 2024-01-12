@@ -1,11 +1,11 @@
 <odoo noupdate="1">
-  <record id="avatax_tax_group" model="account.tax.group">
+  <record id="avior_tax_group" model="account.tax.group">
     <field name="name">Avior</field>
   </record>
-  <record id="avatax" model="account.tax">
+  <record id="avior" model="account.tax">
     <field name="name">Avior</field>
     <field name="description">Sales Tax</field>
-    <field name="tax_group_id" ref="avatax_tax_group"></field>
+    <field name="tax_group_id" ref="avior_tax_group"></field>
     <field name="amount_type">percent</field>
     <field eval="0.00" name="amount"></field>
     <field name="type_tax_use">sale</field>
