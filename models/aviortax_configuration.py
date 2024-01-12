@@ -34,6 +34,11 @@ class AviortaxConfiguration(models.Model):
     customer_entity_code = fields.Char(
         string="Customer Entity Code", help="The customer entity code to connect with"
     )
+    enabled = fields.Boolean(
+        "Enabled",
+        default=True,
+        help="Set to false to disable this Avior Tax configuration without deleting it.",
+    )
 
     # Methods
 
