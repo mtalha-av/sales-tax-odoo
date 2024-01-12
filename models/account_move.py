@@ -136,6 +136,20 @@ class AccountMove(models.Model):
             ):
                 invoice._avior_tax_compute_tax()
         return True
+
+    def is_avior_calculated(self):
+        """
+        Only apply Avior Tax for these types of documents.
+        Can be extended to support other types.
+        """
+        return self.is_sale_document()
+
+    def _post(self, soft=True):
+        res = super()._post(soft=soft)
+        for invoice in res:
+            if invoice.is_avior_calculated():
+                invoice.avior_tax_compute_taxes()
+        return res
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
