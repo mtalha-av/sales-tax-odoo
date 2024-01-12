@@ -13,6 +13,7 @@
         "wizard/aviortax_configuration_login_view.xml",
         "views/account_fiscal_position_view.xml",
         "views/aviortax_view.xml",
+        "views/partner_view.xml",
     ],
     "installable": True,
     "application": True,

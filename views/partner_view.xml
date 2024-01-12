@@ -1,0 +1,14 @@
+<odoo>
+  <!-- Partner Address: Add County field -->
+  <record id="view_partner_details_form_inherit1" model="ir.ui.view">
+    <field name="name">res.partner.details.form.inherit1</field>
+    <field name="model">res.partner</field>
+    <field name="type">form</field>
+    <field name="inherit_id" ref="base.view_partner_form"></field>
+    <field name="arch" type="xml">
+      <field name="state_id" position="after">
+        <field name="county" placeholder="County"></field>
+      </field>
+    </field>
+  </record>
+</odoo>
