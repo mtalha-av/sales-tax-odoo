@@ -150,6 +150,17 @@ class AccountMove(models.Model):
             if invoice.is_avior_calculated():
                 invoice.avior_tax_compute_taxes()
         return res
+
+    def _reverse_move_vals(self, default_values, cancel=True):
+        # OVERRIDE
+        # Don't keep anglo-saxon lines if not cancelling an existing invoice.
+        move_vals = super()._reverse_move_vals(default_values, cancel=cancel)
+        move_vals.update(
+            {
+                "invoice_date": self.invoice_date,
+            }
+        )
+        return move_vals
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
