@@ -98,7 +98,7 @@ class AccountMove(models.Model):
                 for tax in tax_result_line.taxes:
                     tax_id = self.env["account.tax"].get_avior_tax(tax.fips_tax_rate)
                     if tax_id and tax_id not in line.tax_ids:
-                        line_tax_ids = line.tax_ids.filtered(lambda x: not x.is_avatax)
+                        line_tax_ids = line.tax_ids.filtered(lambda x: not x.is_avior)
                         taxes_to_set.append((index, line_tax_ids | tax_id))
                 line.avior_amt_line = tax_result_line.tax_amount
 
