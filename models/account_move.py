@@ -43,7 +43,11 @@ class AccountMove(models.Model):
     @api.onchange("fiscal_position_id")
     def onchange_reset_avior_amount(self):
         """
-        When changing the fiscal position, reset the Avior Tax computed amount.
+        Reset the Avior Tax computed amount when changing the fiscal position.
+
+        This method is triggered when the fiscal position of an invoice is changed.
+        It resets the Avior Tax computed amount to 0 and resets the invoice lines accordingly.
+
         The Odoo computed tax amount will then be shown, as a reference.
         The Avior Tax amount will be recomputed upon document validation.
         """
