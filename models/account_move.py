@@ -68,6 +68,74 @@ class AccountMove(models.Model):
             if line.price_subtotal or line.quantity
         ]
         return [x for x in lines if x]
+
+    def _avior_tax_compute_tax(self):
+        if not self:
+            return
+        self.ensure_one()
+        avior_tax_config = self.env.company.get_avior_tax_config()
+        if not avior_tax_config:
+            return
+
+        taxable_lines = self._avior_tax_prepare_lines()
+        tax_results = avior_tax_config.calculate_tax(
+            doc_date=self.invoice_date or fields.Date.today(),
+            lines=taxable_lines,
+            shipping_address=self.partner_id,
+        )
+
+        if self.state == "draft":
+            taxes_to_set = []
+            tax_result_lines = {int(x.record_number): x for x in tax_results}
+            for index, line in enumerate(self.invoice_line_ids):
+                tax_result_line = tax_result_lines.get(line.id)
+                if not tax_result_line:
+                    continue
+                for tax in tax_result_line.taxes:
+                    tax_id = self.env["account.tax"].get_avior_tax(tax.fips_tax_rate)
+                    if tax_id and tax_id not in line.tax_ids:
+                        line_tax_ids = line.tax_ids.filtered(lambda x: not x.is_avatax)
+                        taxes_to_set.append((index, line_tax_ids | tax_id))
+                line.avior_amt_line = tax_result_line.tax_amount
+
+            self.with_context(check_move_validity=False).avior_amount = sum(
+                x.tax_amount for x in tax_results
+            )
+
+            container = {"records": self}
+            self.with_context(
+                avior_invoice=self, check_move_validity=False
+            )._sync_dynamic_lines(container)
+            self.line_ids.mapped("move_id")._check_balanced(container)
+
+            # Set Taxes on lines in a way that properly triggers onchanges
+            # This same approach is also used by the official account_taxcloud connector
+            with Form(self) as move_form:
+                for index, taxes in taxes_to_set:
+                    with move_form.invoice_line_ids.edit(index) as line_form:
+                        line_form.tax_ids.clear()
+                        for tax in taxes:
+                            line_form.tax_ids.add(tax)
+
+        return tax_results
+
+    def avior_tax_compute_taxes(self):
+        """
+        Computes the taxes for the invoice using the Avior Tax API.
+        It's also called from Invoice's Action menu to force computation of the Invoice taxes.
+        """
+        for invoice in self:
+            if (
+                invoice.move_type
+                in [
+                    "out_invoice",
+                    "out_refund",
+                ]  # only Customer Invoice and Customer Credit Note
+                and invoice.fiscal_position_id.is_avior  # only if Avior Tax is enabled
+                and (invoice.state == "draft")
+            ):
+                invoice._avior_tax_compute_tax()
+        return True
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
