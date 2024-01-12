@@ -1,5 +1,5 @@
-from typing import List
 import logging
+from typing import Dict, List
 import requests
 
 from .dtos import Output
