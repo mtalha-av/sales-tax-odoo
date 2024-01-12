@@ -6,11 +6,6 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <form string="Avior Tax API">
-        <!-- <header> -->
-        <!--   <button class="oe_highlight" name="action_done" states="draft" string="Confirm" type="object"></button> -->
-        <!--   <button name="action_draft" states="done" string="Set To Draft" type="object"></button> -->
-        <!--   <field name="state" widget="statusbar"></field> -->
-        <!-- </header> -->
         <sheet>
           <group>
             <group>
