@@ -2,6 +2,7 @@ import logging
 
 from odoo import fields, models
 from ..api.aviortax_v1_client import AviortaxV1Client
+from ..api.dtos import Input
 
 _logger = logging.getLogger(__name__)
 
@@ -41,6 +42,36 @@ class AviortaxConfiguration(models.Model):
     )
 
     # Methods
+
+    def calculate_tax(self, doc_date, lines, shipping_address):
+        avior = AviortaxV1Client(
+            service_url=self.service_url,
+            auth_token=self.token,
+        )
+        prepared_lines = [
+            Input.Product(
+                date=doc_date,
+                record_number=line.get("id").id,
+                seller_id=self.seller_id,
+                seller_location_id=self.seller_location_id,
+                seller_state=self.seller_state,
+                customer_entity_code=self.customer_entity_code,
+                delivery_method="N",
+                ship_to_address=shipping_address.street,
+                ship_to_suite="",
+                ship_to_city=shipping_address.city,
+                ship_to_county=shipping_address.county,  #  FIXME: county is not a field on res.partner
+                ship_to_state=shipping_address.state_id.code,
+                ship_to_zip_code=shipping_address.zip,
+                ship_to_zip_plus="",
+                sku=line.get("sku"),
+                amount_of_sale=line.get("amount", 0.0),
+            )
+            for line in lines
+        ]
+
+        result = avior.get_tax(prepared_lines)
+        return result
 
     def login(self):
         """Login to Avior Tax"""
