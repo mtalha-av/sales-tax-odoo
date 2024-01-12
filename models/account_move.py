@@ -57,3 +57,5 @@ class AccountMove(models.Model):
                 line.avior_amt_line = 0
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
+
+    avior_amt_line = fields.Float(string="Avior Line", copy=False)
