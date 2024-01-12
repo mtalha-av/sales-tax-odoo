@@ -7,6 +7,7 @@ class AccountMove(models.Model):
 
     is_avior = fields.Boolean(related="fiscal_position_id.is_avior")
     avior_amount = fields.Float(string="Avior", copy=False)
+    calculate_tax_on_save = fields.Boolean()
     tax_on_shipping_address = fields.Boolean(
         "Tax based on shipping address", default=True
     )
@@ -78,9 +79,6 @@ class AccountMove(models.Model):
             return
 
         taxable_lines = self._avior_tax_prepare_lines()
-
-        if len(taxable_lines) == 0:
-            return
 
         tax_results = avior_tax_config.calculate_tax(
             doc_date=self.invoice_date or fields.Date.today(),
@@ -166,25 +164,53 @@ class AccountMove(models.Model):
         )
         return move_vals
 
+    @api.onchange(
+        "invoice_line_ids",
+        "tax_on_shipping_address",
+        "partner_id",
+    )
+    def onchange_avior_calculation(self):
+        self.calculate_tax_on_save = False
+        if (
+            self._origin.partner_id != self.partner_id
+            or self._origin.tax_on_shipping_address != self.tax_on_shipping_address
+        ):
+            self.calculate_tax_on_save = True
+            return
+        for line in self.invoice_line_ids:
+            if (
+                line._origin.price_unit != line.price_unit
+                or line._origin.discount != line.discount
+                or line._origin.quantity != line.quantity
+            ) and not line.display_type:
+                self.calculate_tax_on_save = True
+                break
+
     def write(self, vals):
         result = super().write(vals)
         for record in self:
-            if record.state == "draft" and not self._context.get(
-                "skip_second_write", False
+            if (
+                record.calculate_tax_on_save
+                and record.state == "draft"
+                and not self._context.get("skip_second_write", False)
             ):
-                # record.with_context(skip_second_write=True).write(
-                #     {"calculate_tax_on_save": False}
-                # )
+                _logger.info("Writing invoice %s", record.name)
+                record.with_context(skip_second_write=True).write(
+                    {"calculate_tax_on_save": False}
+                )
                 record.avior_tax_compute_taxes()
         return result
 
     @api.model
     def create(self, vals):
         record = super().create(vals)
-        if not self._context.get("skip_second_write", False):
-            # record.with_context(skip_second_write=True).write(
-            #     {"calculate_tax_on_save": False}
-            # )
+        if record.calculate_tax_on_save and not self._context.get(
+            "skip_second_write", False
+        ):
+            _logger.info("Creating invoice %s", record.name)
+            record.with_context(skip_second_write=True).write(
+                {"calculate_tax_on_save": False}
+            )
             record.avior_tax_compute_taxes()
         return record
 
