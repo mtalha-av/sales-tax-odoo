@@ -51,7 +51,7 @@ class AviortaxV1Client:
     def get_tax(self, input_products=[]):
         response = requests.post(
             f"{self.service_url}/suttaxd/gettax/",
-            data=input_products,
+            json=input_products,
             headers={"Authorization": f"Token {self.auth_token}"},
         )
         if not response.ok:
