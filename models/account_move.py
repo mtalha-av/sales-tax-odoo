@@ -78,6 +78,10 @@ class AccountMove(models.Model):
             return
 
         taxable_lines = self._avior_tax_prepare_lines()
+
+        if not taxable_lines:
+            return
+
         tax_results = avior_tax_config.calculate_tax(
             doc_date=self.invoice_date or fields.Date.today(),
             lines=taxable_lines,
