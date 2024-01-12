@@ -22,6 +22,14 @@ class AccountMove(models.Model):
         "avior_amount",
     )
     def _compute_amount(self):
+        """
+        Compute the amount fields for the invoice.
+
+        This method overrides the parent method to calculate the amount fields for the invoice.
+        It takes into account various factors such as debit, credit, currency, payment state,
+        and avior amount.
+        """
+
         res = super()._compute_amount()
         for inv in self:
             if not inv.avior_amount:
