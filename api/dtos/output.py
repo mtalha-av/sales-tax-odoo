@@ -48,6 +48,10 @@ class Output:
         def add_taxes(self, taxes: List["Output.Tax"]):
             self.taxes = taxes
 
+        @property
+        def tax_amount(self):
+            return sum(float(t.fips_tax_amount) for t in self.taxes)
+
     class Tax:
         fips_jurisdiction_code: str
         fips_tax_rate: str
