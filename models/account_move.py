@@ -55,6 +55,19 @@ class AccountMove(models.Model):
             inv.avior_amount = 0
             for line in inv.invoice_line_ids:
                 line.avior_amt_line = 0
+
+    def _avior_tax_prepare_lines(self):
+        """
+        Prepare the lines to use for Avior Tax computation.
+        Returns a list of dicts
+        """
+        sign = 1 if self.move_type.startswith("out") else -1
+        lines = [
+            line._avior_tax_prepare_line(sign=sign)
+            for line in self.invoice_line_ids
+            if line.price_subtotal or line.quantity
+        ]
+        return [x for x in lines if x]
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
