@@ -55,6 +55,8 @@ class AviortaxV1Client:
             headers={"Authorization": f"Token {self.auth_token}"},
         )
         if not response.ok:
+            _LOGGER.error(response.text)
+            _LOGGER.error(response.status_code)
             raise Exception("Get tax failed")
         data = response.json()
         return build_products(data)
