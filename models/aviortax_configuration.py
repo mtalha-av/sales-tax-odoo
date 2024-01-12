@@ -44,6 +44,7 @@ class AviortaxConfiguration(models.Model):
     # Methods
 
     def calculate_tax(self, doc_date, lines, shipping_address):
+        _logger.info("Avior Tax: Calculating tax")
         avior = AviortaxV1Client(
             service_url=self.service_url,
             auth_token=self.token,
