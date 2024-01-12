@@ -66,7 +66,7 @@ class AviortaxConfiguration(models.Model):
                 ship_to_zip_plus="",
                 sku=line.get("sku"),
                 amount_of_sale=line.get("amount", 0.0),
-            )
+            ).asdict()
             for line in lines
         ]
 
