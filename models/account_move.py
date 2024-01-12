@@ -31,5 +31,17 @@ class AccountMove(models.Model):
             sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
             inv.amount_total_signed = inv.amount_total * sign
         return res
+
+    @api.onchange("fiscal_position_id")
+    def onchange_reset_avior_amount(self):
+        """
+        When changing the fiscal position, reset the Avior Tax computed amount.
+        The Odoo computed tax amount will then be shown, as a reference.
+        The Avior Tax amount will be recomputed upon document validation.
+        """
+        for inv in self:
+            inv.avior_amount = 0
+            for line in inv.invoice_line_ids:
+                line.avior_amt_line = 0
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
