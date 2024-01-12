@@ -58,6 +58,6 @@ class Output:
         fips_tax_amount: str
 
         def __init__(self, data):
-            self.fips_jurisdiction_code = data["fips jurisdiction code"]
-            self.fips_tax_rate = data["fips tax rate"]
-            self.fips_tax_amount = data["fips tax amount"]
+            self.fips_jurisdiction_code = data["fips_jurisdiction_code"]
+            self.fips_tax_rate = data["fips_tax_rate"]
+            self.fips_tax_amount = data["fips_tax_amount"]
