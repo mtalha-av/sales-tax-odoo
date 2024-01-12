@@ -1,0 +1,12 @@
+<odoo>
+  <record id="view_fiscal_position_form_avior_tax" model="ir.ui.view">
+    <field name="name">account.fiscal.position form add Avior Tax</field>
+    <field name="model">account.fiscal.position</field>
+    <field name="inherit_id" ref="account.view_account_position_form"></field>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="is_avior"></field>
+      </field>
+    </field>
+  </record>
+</odoo>

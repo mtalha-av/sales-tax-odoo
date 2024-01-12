@@ -11,6 +11,7 @@
         "security/ir.model.access.csv",
         "data/aviortax_data.xml",
         "wizard/aviortax_configuration_login_view.xml",
+        "views/account_fiscal_position_view.xml",
         "views/aviortax_view.xml",
     ],
     "installable": True,
