@@ -1,0 +1,21 @@
+<odoo>
+  <!--Invoice Form -->
+  <record id="view_move_form_inherit_1" model="ir.ui.view">
+    <field name="name">account.move.form.inherit</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_move_form"></field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <button name="preview_invoice" position="before">
+        <field invisible="1" name="is_avior"></field>
+        <button attrs="{'invisible': ['|', ('is_avior', '=', False), ('state', 'not in', ['draft'])]}" name="avior_tax_compute_taxes" string="Compute Taxes" type="object"></button>
+      </button>
+      <group id="header_right_group" position="inside">
+        <field name="tax_on_shipping_address"></field>
+      </group>
+      <field name="fiscal_position_id" position="after">
+        <field groups="base.group_no_one" name="is_avior"></field>
+      </field>
+    </field>
+  </record>
+</odoo>
