@@ -60,7 +60,7 @@ class AviortaxConfiguration(models.Model):
                 ship_to_address=shipping_address.street,
                 ship_to_suite="",
                 ship_to_city=shipping_address.city,
-                ship_to_county=shipping_address.county,  #  FIXME: county is not a field on res.partner
+                ship_to_county=shipping_address.county,
                 ship_to_state=shipping_address.state_id.code,
                 ship_to_zip_code=shipping_address.zip,
                 ship_to_zip_plus="",
