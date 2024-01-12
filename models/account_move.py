@@ -1,5 +1,8 @@
+import logging
 from odoo import models, api, fields
 from odoo.tests.common import Form
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountMove(models.Model):
@@ -100,7 +103,6 @@ class AccountMove(models.Model):
                         line_taxes |= tax_id
                 taxes_to_set.append((index, line_taxes))
                 line.avior_amt_line = tax_result_line.tax_amount
-
             self.with_context(check_move_validity=False).avior_amount = sum(
                 x.tax_amount for x in tax_results
             )
@@ -195,7 +197,6 @@ class AccountMove(models.Model):
                 and record.state == "draft"
                 and not self._context.get("skip_second_write", False)
             ):
-                _logger.info("Writing invoice %s", record.name)
                 record.with_context(skip_second_write=True).write(
                     {"calculate_tax_on_save": False}
                 )
@@ -208,7 +209,6 @@ class AccountMove(models.Model):
         if record.calculate_tax_on_save and not self._context.get(
             "skip_second_write", False
         ):
-            _logger.info("Creating invoice %s", record.name)
             record.with_context(skip_second_write=True).write(
                 {"calculate_tax_on_save": False}
             )
