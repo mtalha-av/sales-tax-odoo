@@ -1,6 +1,7 @@
 import logging
 
 from odoo import fields, models
+from odoo.exceptions import UserError
 from ..api.aviortax_v1_client import AviortaxV1Client
 from ..api.dtos import Input
 
@@ -45,6 +46,10 @@ class AviortaxConfiguration(models.Model):
 
     def calculate_tax(self, doc_date, lines, shipping_address):
         _logger.info("Avior Tax: Calculating tax")
+        if not shipping_address.county:
+            raise UserError(
+                f"Please set the county for the shipping address of the customer {shipping_address.display_name}"
+            )
         avior = AviortaxV1Client(
             service_url=self.service_url,
             auth_token=self.token,
