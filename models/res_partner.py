@@ -7,4 +7,5 @@ class Partner(models.Model):
     county = fields.Char(
         string="County",
         help="The county where the company is located. Required for use with Avior Tax.",
+        required=False,
     )
