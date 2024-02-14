@@ -1,6 +1,6 @@
 {
     "name": "Avior Tax API Integration",
-    "version": "16.0.0.0.2",
+    "version": "16.0.0.0.3",
     "author": "Collins Lagat",
     "description": "Compute Sales Tax in the United States using the Avior Tax API",
     "license": "LGPL-3",
