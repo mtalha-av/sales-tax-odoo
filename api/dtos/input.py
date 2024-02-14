@@ -9,6 +9,13 @@ class Input:
             seller_state: str,
             delivery_method: str,
             customer_entity_code: str,
+            order_received_address: str,
+            order_received_suite: str,
+            order_received_city: str,
+            order_received_county: str,
+            order_received_state: str,
+            order_received_zip_code: str,
+            order_received_zip_plus: str,
             ship_to_address: str,
             ship_to_suite: str,
             ship_to_city: str,
@@ -26,6 +33,13 @@ class Input:
             self.seller_state = seller_state
             self.delivery_method = delivery_method
             self.customer_entity_code = customer_entity_code
+            self.order_received_address = order_received_address
+            self.order_received_suite = order_received_suite
+            self.order_received_city = order_received_city
+            self.order_received_county = order_received_county
+            self.order_received_state = order_received_state
+            self.order_received_zip_code = order_received_zip_code
+            self.order_received_zip_plus = order_received_zip_plus
             self.ship_to_address = ship_to_address
             self.ship_to_suite = ship_to_suite
             self.ship_to_city = ship_to_city
@@ -45,6 +59,13 @@ class Input:
                 "seller state": self.seller_state,
                 "delivery method": self.delivery_method,
                 "customer entity code": self.customer_entity_code,
+                "order received address": self.order_received_address,
+                "order received suite": self.order_received_suite,
+                "order received city": self.order_received_city,
+                "order received county": self.order_received_county,
+                "order received state": self.order_received_state,
+                "order received zip code": self.order_received_zip_code,
+                "order received zip plus": self.order_received_zip_plus,
                 "ship to address": self.ship_to_address,
                 "ship to suite": self.ship_to_suite,
                 "ship to city": self.ship_to_city,

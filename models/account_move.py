@@ -87,6 +87,7 @@ class AccountMove(models.Model):
             doc_date=self.invoice_date or fields.Date.today(),
             lines=taxable_lines,
             shipping_address=self.partner_id,
+            company_address=self.company_id.partner_id,
         )
 
         if self.state == "draft":

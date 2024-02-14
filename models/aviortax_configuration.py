@@ -43,7 +43,7 @@ class AviortaxConfiguration(models.Model):
 
     # Methods
 
-    def calculate_tax(self, doc_date, lines, shipping_address):
+    def calculate_tax(self, doc_date, lines, shipping_address, company_address):
         _logger.info("Avior Tax: Calculating tax")
         avior = AviortaxV1Client(
             service_url=self.service_url,
@@ -58,8 +58,15 @@ class AviortaxConfiguration(models.Model):
                 seller_state=self.seller_state,
                 customer_entity_code=self.customer_entity_code,
                 delivery_method="N",
+                order_received_address=company_address.street,
+                order_received_suite=company_address.street2 or "",
+                order_received_city=company_address.city,
+                order_received_county=company_address.county or "",
+                order_received_state=company_address.state_id.code,
+                order_received_zip_code=company_address.zip,
+                order_received_zip_plus="",
                 ship_to_address=shipping_address.street,
-                ship_to_suite="",
+                ship_to_suite=shipping_address.street2 or "",
                 ship_to_city=shipping_address.city,
                 ship_to_county=shipping_address.county or "",
                 ship_to_state=shipping_address.state_id.code,
