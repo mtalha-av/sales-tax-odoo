@@ -99,7 +99,13 @@ class AccountMove(models.Model):
                     continue
                 line_taxes = line.tax_ids
                 for tax in tax_result_line.taxes:
-                    tax_id = self.env["account.tax"].get_avior_tax(tax.fips_tax_rate)
+                    tax_calculation = float(tax.fips_tax_rate)
+                    if tax.fips_tax_amount:
+                        tax_calculation = float(tax.fips_tax_amount) / float(
+                            tax_result_line.amount_of_sale
+                        )
+                    rate = round(tax_calculation * 100, 4)
+                    tax_id = self.env["account.tax"].get_avior_tax(rate)
                     if tax_id and tax_id not in line.tax_ids:
                         line_taxes |= tax_id
                 taxes_to_set.append((index, line_taxes))
