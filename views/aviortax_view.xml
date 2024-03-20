@@ -21,7 +21,7 @@
                   <field name="password" password="True"></field>
                   <field name="service_url"></field>
                   <field name="token" password="True"></field>
-                  <button class="btn-primary d-flex align-items-center" icon="fa-lock" name="%(account_aviortax_ckl.action_aviortax_configuration_login)d" string="Login" type="action"></button>
+                  <button class="btn-primary d-flex align-items-center" icon="fa-lock" name="%(account_avior_tax_ckl.action_aviortax_configuration_login)d" string="Login" type="action"></button>
                   <a colspan="2" href="https://avior.tax/" target="_blank">Visit the Avior Tax website</a>
                 </group>
               </group>
