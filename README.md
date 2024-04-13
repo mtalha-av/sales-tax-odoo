@@ -9,9 +9,9 @@ You will need an Avior Tax Services account, and Authentication credentials prov
 
 1. [Installation](#installation)
 2. [Configuration](#configuration)
-  - [Configure Avior Tax Connection](#configure-avior-tax-connection)
-  - [Configure Taxes](#configure-taxes)
-  - [Configure Fiscal Positions](#configure-fiscal-positions)
+    1. [Configure Avior Tax Connection](#configure-avior-tax-connection)
+    2. [Configure Taxes](#configure-taxes)
+    3. [Configure Fiscal Positions](#configure-fiscal-positions)
 3. [How to use](#how-to-use)
 
 ## Installation
