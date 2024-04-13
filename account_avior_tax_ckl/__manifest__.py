@@ -3,9 +3,9 @@
     "version": "16.0.0.0.4",
     "author": "Collins Lagat",
     "description": "Compute Sales Tax in the United States using the Avior Tax API",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "category": "Accounting",
-    "website": "https://collinslagat.com",
+    "website": "https://avior.tax",
     "depends": ["account", "sale", "base_geolocalize"],
     "data": [
         "security/ir.model.access.csv",
