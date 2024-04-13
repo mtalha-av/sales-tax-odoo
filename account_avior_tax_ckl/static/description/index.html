@@ -1,82 +1,84 @@
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">The real customer centric CRM</h2>
-        <h3 class="oe_slogan">Track leads, close opportunities and get accurate forecasts.</h3>
-        <div class="oe_demo oe_picture oe_screenshot">
-            <img src="crm_sc_00.png">
-        </div>
-    </div>
-</section>
-
-<section class="oe_container oe_dark">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">Get accurate forecasts</h2>
-        <h3 class="oe_slogan">Use actionable data to make better decisions</h3>
-        <div class="oe_span6 text-justify oe_mt32">
-            <span class="fa fa-search fa-2x pull-left"/>
-            <p class="oe_mb32" style="margin-left:48px;">
-            Get the insights you need to make smarter decisions.
-            </p>
-            <span class="fa fa-sliders fa-2x pull-left"/>
-            <p class="oe_mb32" style="margin-left:48px;">
-            Design custom dashboards to get a picture of your business at a glance.
-            </p>
-            <span class="fa fa-bar-chart fa-2x pull-left"></span>
-            <p>
-            Dig deeper with real-time reports and flow charts that anyone can create and share.
-            </p>
-        </div>
-        <div class="oe_span6">
-            <img class="oe_picture oe_screenshot" src="crm_preview.gif">
-        </div>
-    </div>
-</section>
-
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">Get more done in less time</h2>
-        <h3 class="oe_slogan">Great Tool = Happy People</h3>
-        <div class="oe_span6">
-            <img class="oe_picture oe_screenshot" src="crm_sc_02a.png">
-        </div>
-        <div class="oe_span6">
-            <p class="oe_mt32 oe_mb32 text-justify">
-            Automate activities based on your sales scripts: calls, meetings, mails and quotations. Get all information you need, right on the opportunity: page viewed, mails received, etc.
-            </p>
-            <img class='img-responsive' src="crm_sc_02b.png">
-        </div>
-    </div>
-</section>
-
-<section class="oe_container oe_dark">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span6">
-            <h2 class="oe_slogan" style="color:#875A7B; text-align: left;">Real-time overview</h2>
-            <h3 class="oe_slogan" style="text-align: left;">of your performances &amp; next activities</h3>
-            <p class="oe_mt32">
-            Know exactly how you perform compared to your monthly targets.<br/>Organize your work based on your scheduled next actions.
-            </p>
-        </div>
-        <div class="oe_span6">
-            <img class="oe_picture oe_screenshot" src="crm_sc_03.png"/>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">Stay connected to your customers</h2>
-        <h3 class="oe_slogan">Real-time messaging to enhance collaboration</h3>
-        <div class="oe_span6">
-            <img class="oe_picture oe_screenshot" src="crm_sc_04.png"/>
-        </div>
-        <div class="oe_span6">
-            <p class="oe_mt32 text-justify">
-            Get a quick overview of what's going on in your team. See when a colleague logs a call or send a quote. Share ideas and files in real-time and catch-up things you missed when you were away.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container oe_separator">
-</section>
+<h1 id="avior-tax-services-connector">Avior Tax Services Connector</h1>
+<p>This connector allows you to interact with the Avior Tax Services API which provides tax calculation services for all US states and territories. It is able use the company&#39;s address and the customer&#39;s address to calculate the tax for a given order.</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>You will need an Avior Tax Services account, and Authentication credentials provided by Avior Tax Services. Once you activate and configure the connector, it automatically perform tax calculations in the background.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a><ol>
+<li><a href="#configure-avior-tax-connection">Configure Avior Tax Connection</a></li>
+<li><a href="#configure-taxes">Configure Taxes</a></li>
+<li><a href="#configure-fiscal-positions">Configure Fiscal Positions</a></li>
+</ol>
+</li>
+<li><a href="#how-to-use">How to use</a></li>
+</ol>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Download the Avior Tax Services Connector from the <a href="https://apps.odoo.com/apps">Odoo Apps Store</a>.</li>
+<li>Add the connector to your Odoo instance. This can be done by uploading the compressed connector file the Odoo instance&#39;s addons directory.</li>
+<li>Login to your Odoo instance as an <em>administrator</em>, and navigate to <strong>Settings</strong> and activate the <strong>Developer Mode</strong>.</li>
+<li>Then navigate to <strong>Apps</strong> and click the <strong>Update Apps List</strong> button. This will update the list of available apps. You may need to refresh the page if you do not see the connector.</li>
+<li>Search for the Avior Tax Services Connector in the Apps list and click the <strong>Install</strong> button. This will install the connector to your Odoo instance as well as add a default Tax and Fiscal Position already configured to use Avior Tax Connector. It will also add a <strong>county</strong> field to the <strong>res.partner</strong> model.</li>
+</ol>
+<h2 id="configuration">configuration</h2>
+<h3 id="configure-avior-tax-connection">Configure Avior Tax Connection</h3>
+<ol>
+<li>Navigate to <strong>Accounting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Avior Tax</strong> &gt; <strong>Avior Tax API</strong>.</li>
+<li>Click on the <strong>New</strong> button to create a new Avior Tax API configuration.</li>
+<li>Fill in the required fields:<ul>
+<li><strong>Company</strong>: Select the company that will use this API configuration.</li>
+<li><strong>Username</strong>: The username provided by Avior Tax Services.</li>
+<li><strong>Password</strong>: The password provided by Avior Tax Services.</li>
+<li><strong>Service URL</strong>: The URL provided by Avior Tax Services.</li>
+</ul>
+</li>
+<li>On the same form, you&#39;ll see that the <strong>Token</strong> field is empty and greyed out. This field will be automatically filled in once you click the <strong>Login</strong> button.</li>
+<li>Click the <strong>Login</strong> button to authenticate with the Avior Tax Services API. If the authentication is successful, the <strong>Token</strong> field will be filled in with the authentication token.</li>
+<li>You are also required to fill in extra details whose form can be accessed by clicking the <strong>Details</strong> tab. These details include:<ul>
+<li><strong>Seller Id</strong>: The seller ID provided by Avior Tax Services. </li>
+<li><strong>Seller Location Id</strong>: The seller location ID provided by Avior Tax Services.</li>
+<li><strong>Seller State</strong>: The state where the seller is located.</li>
+<li><strong>Customer Entity Code</strong>: The customer entity code provided by Avior Tax Services.</li>
+</ul>
+</li>
+<li>Click the <strong>Save</strong> button to save the configuration.</li>
+</ol>
+<h3 id="configure-taxes">Configure Taxes</h3>
+<p>By installing the connector, a default tax named <strong>Avior</strong> is created. This tax is already configured to use the Avior Tax Services API as well as being limited to the United States. You can create more taxes and configure them to use the Avior Tax Services API. You&#39;ll also notice that this default tax is set to 0.0000%. This is because Avior will dynamically determine the appropriate tax rate for the sale.</p>
+<ol>
+<li>Navigate to <strong>Accounting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Accounting</strong> &gt; <strong>Taxes</strong>.</li>
+<li>Click on the <strong>New</strong> button to create a new tax.</li>
+<li>Fill in the required fields:<ul>
+<li><strong>Tax Name</strong>: The name of the tax.</li>
+<li><strong>Tax Type</strong>: The type of tax. Note that only <strong>Sales</strong> is supported.</li>
+<li><strong>Tax Computation</strong>: The method used to compute the tax. Note that only <strong>Percentage of Price</strong> is supported.</li>
+<li><strong>Amount</strong>: The amount of the tax. This should be set to 0%. Avior will dynamically determine the appropriate tax rate.</li>
+<li><strong>Is Avior Tax</strong>: Check this box to indicate that this tax should use the Avior Tax Services API. This can be found under the <strong>Advanced Options</strong> tab.</li>
+<li><strong>Country</strong>: The country where the tax is applicable. Note that only <strong>United States</strong> is supported.</li>
+</ul>
+</li>
+<li>You can also (optionally) fill in the <strong>Tax Group</strong> field. The name of the tax group determines the name of the tax in the invoice.</li>
+<li>Click the <strong>Save</strong> button to save the tax.</li>
+</ol>
+<h3 id="configure-fiscal-positions">Configure Fiscal Positions</h3>
+<p>By installing the connector, a default fiscal position named <strong>Avior Tax Mapping (US)</strong> is created. This fiscal position, when attached to an invoice, tells Avior to calculate the tax for that invoice. You can create more fiscal positions and configure them to use the Avior Tax Services API.</p>
+<ol>
+<li>Navigate to <strong>Accounting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Accounting</strong> &gt; <strong>Fiscal Positions</strong>.</li>
+<li>Click on the <strong>New</strong> button to create a new fiscal position.</li>
+<li>Fill in the required fields:<ul>
+<li><strong>Fiscal Position Name</strong>: The name of the fiscal position.</li>
+<li><strong>Detect Automatically</strong>: Check this box to automatically apply this fiscal position to an invoice based on the customer&#39;s address.</li>
+<li><strong>Country</strong>: The country where the fiscal position is applicable. Note that only <strong>United States</strong> is supported.</li>
+<li><strong>Is Avior Tax</strong>: Check this box to indicate that this fiscal position should use the Avior Tax Services API.</li>
+</ul>
+</li>
+<li>Click the <strong>Save</strong> button to save the fiscal position.</li>
+</ol>
+<h2 id="how-to-use">How to use</h2>
+<ol>
+<li>Create a new customer or edit an existing customer. Fill in the customer&#39;s address and set the <strong>County</strong> field to the customer&#39;s county. Note that this field is an <strong>optional</strong> field.</li>
+<li>Create a new invoice or edit an existing invoice (that&#39;s in a draft state).</li>
+<li>Fill in the invoice lines and set the <strong>Fiscal Position</strong> field to the fiscal position that uses the Avior Tax Services API. However, if the <strong>Detect Automatically</strong> field is checked in the fiscal position, the fiscal position will be automatically applied based on the customer&#39;s address. This field can be found under the <strong>Other Information</strong> tab.</li>
+<li>Click the <strong>Compute Tax</strong> button to calculate the tax for the invoice. If the tax is successfully calculated, the tax amount will be displayed in the <strong>Tax</strong> field.</li>
+</ol>
