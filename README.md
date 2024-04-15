@@ -1,4 +1,4 @@
-# Avior Tax Services Connector
+# Avior SutTax Connector
 This connector allows you to interact with the Avior Tax Services API which provides tax calculation services for all US states and territories. It is able use the company's address and the customer's address to calculate the tax for a given order.
 
 ## Pre-requisites
