@@ -22,7 +22,7 @@ You will need an Avior Tax Services account, and Authentication credentials prov
 4. Then navigate to **Apps** and click the **Update Apps List** button. This will update the list of available apps. You may need to refresh the page if you do not see the connector.
 5. Search for the Avior Tax Services Connector in the Apps list and click the **Install** button. This will install the connector to your Odoo instance as well as add a default Tax and Fiscal Position already configured to use Avior Tax Connector. It will also add a **county** field to the **res.partner** model.
 
-## configuration
+## Configuration
 
 ### Configure Avior Tax Connection
 1. Navigate to **Accounting** > **Configuration** > **Avior Tax** > **Avior Tax API**.
