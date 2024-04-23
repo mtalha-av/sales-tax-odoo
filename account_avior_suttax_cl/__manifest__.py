@@ -19,6 +19,7 @@
         "views/account_tax_view.xml",
         "views/account_fiscal_position_view.xml",
     ],
+    "images": ["static/description/invoice_screenshot.png"],
     "installable": True,
     "application": True,
 }
