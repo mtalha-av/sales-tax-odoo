@@ -1,6 +1,6 @@
 {
     "name": "Avior SutTax",
-    "version": "16.0.0.0.4",
+    "version": "16.0.0.0.5",
     "author": "Avior, Collins Lagat",
     "summary": "Compute Sales Tax in the United States using the Avior Tax API",
     "description": "Compute Sales Tax in the United States using the Avior Tax API",
